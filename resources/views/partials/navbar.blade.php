@@ -16,6 +16,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Citas</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Iniciar Sesion</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Registrar</a>
+                </li>
             </ul>
         </div>
     </div>
