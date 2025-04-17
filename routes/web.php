@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DoctorController;
 
-// Ruta para la página principal personalizada
+// Ruta principal (Home)
 Route::get('/', function () {
-    return view('home'); // Carga home.blade.php
+    return view('home');
 })->name('home');
 
-// Otras rutas...

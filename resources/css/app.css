@@ -1,11 +1,144 @@
-@import 'tailwindcss';
+/* -------------------------------------------------------------------------- */
+/* ESTILOS GLOBALES - PALETA PROFESIONAL MÉDICA */
+/* -------------------------------------------------------------------------- */
+:root {
+    --font-sans: 'Instrument Sans', -apple-system, sans-serif;
+    --primary-dark: #0d3b66;    /* Azul marino profesional */
+    --primary-light: #3a86ff;   /* Azul corporativo */
+    --accent-teal: #2ec4b6;     /* Verde azulado médico */
+    --neutral-light: #f8f9fa;   /* Fondo claro */
+    --neutral-dark: #212529;    /* Texto oscuro */
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* -------------------------------------------------------------------------- */
+/* HERO SECTION - DISEÑO PROFESIONAL */
+/* -------------------------------------------------------------------------- */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%) !important;
+    position: relative;
+    color: white;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+}
+
+.hero-section .btn-light {
+    background: white;
+    color: var(--primary-dark) !important;
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.hero-section .btn-outline-light {
+    border: 2px solid white;
+    background: transparent;
+    transition: all 0.3s;
+}
+
+.hero-section .btn-light:hover,
+.hero-section .btn-outline-light:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* -------------------------------------------------------------------------- */
+/* BUSCADOR - ESTILOS REFINADOS */
+/* -------------------------------------------------------------------------- */
+#search .card {
+    border: none;
+    margin-top: -50px;
+    background: white;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-radius: 12px !important;
+}
+
+#search .form-select-lg, 
+#search .form-control-lg {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px !important;
+}
+
+#search .btn-primary {
+    background: var(--accent-teal);
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+#search .btn-primary:hover {
+    background: #25a899;
+    transform: translateY(-2px);
+}
+
+/* -------------------------------------------------------------------------- */
+/* ESPECIALIDADES - DISEÑO CLÍNICO */
+/* -------------------------------------------------------------------------- */
+.card-specialty {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none !important;
+    border-radius: 12px !important;
+    background: white;
+    overflow: hidden;
+}
+
+.card-specialty:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-specialty .icon-wrapper {
+    background: rgba(46, 196, 182, 0.1);
+    color: var(--accent-teal);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    transition: all 0.3s;
+}
+
+.card-specialty:hover .icon-wrapper {
+    background: var(--accent-teal);
+    color: white;
+}
+
+/* -------------------------------------------------------------------------- */
+/* CTA MÉDICOS - ESTILOS ELEGANTES */
+/* -------------------------------------------------------------------------- */
+.bg-dark {
+    background-color: var(--primary-dark) !important;
+}
+
+.btn-light {
+    background: white;
+    color: var(--primary-dark) !important;
+    border-radius: 8px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* RESPONSIVE - AJUSTES PROFESIONALES */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+    .hero-section::before {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    #search .card {
+        margin-top: -30px;
+    }
 }
