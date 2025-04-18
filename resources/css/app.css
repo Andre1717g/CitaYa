@@ -142,3 +142,25 @@
         margin-top: -30px;
     }
 }
+
+.hover-transform {
+    transition: all 0.3s ease;
+    border-radius: 0.8rem !important;
+}
+.hover-transform:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+}
+.card-header {
+    border-top-left-radius: 0.8rem !important;
+    border-top-right-radius: 0.8rem !important;
+}
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+}
+.bg-gradient-success {
+    background: linear-gradient(135deg, #0cebeb 0%, #20e3b2 50%, #29ffc6 100%);
+}
+.list-unstyled li {
+    font-size: 1.05rem;
+}

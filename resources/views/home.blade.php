@@ -98,7 +98,9 @@
                 <p class="lead mb-0">Únete a nuestra plataforma y llega a más pacientes.</p>
             </div>
             <div class="col-md-4 text-md-end mt-3 mt-md-0">
-                <a href="#" class="btn btn-light btn-lg rounded-pill px-4">Registrar clínica</a>
+            <a href="{{ route('register.type') }}" class="btn btn-light btn-lg rounded-pill px-4">
+                Registrar clínica
+            </a>
             </div>
         </div>
     </div>

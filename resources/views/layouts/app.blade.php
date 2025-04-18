@@ -6,6 +6,7 @@
     <title>@yield('title')</title>
     <!-- Aquí puedes incluir tu CSS y otros recursos -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     @include('partials.navbar') <!-- Si tienes una barra de navegación -->
