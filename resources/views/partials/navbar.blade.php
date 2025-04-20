@@ -21,8 +21,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Citas</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Iniciar Sesión</a>
+                <!-- Botón destacado para login de pacientes -->
+                <a href="{{ route('login') }}" class="nav-link btn ">
+                    <i class="fas fa-sign-in-alt me-1"></i> Ingresar
+                </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('register.type') }}">Registrar</a>

@@ -63,7 +63,7 @@
                         </ul>
                     </div>
                     <div class="card-footer bg-transparent border-0 py-3">
-                        <a href="{{ route('clinics.register') }}" class="btn btn-success btn-lg w-100 rounded-pill">
+                        <a href="{{ route('doctor.register') }}" class="btn btn-success btn-lg w-100 rounded-pill">
                             Comenzar <i class="fas fa-arrow-right ms-2"></i>
                         </a>
                     </div>

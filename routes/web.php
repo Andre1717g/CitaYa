@@ -14,11 +14,20 @@ Route::get('/tipo-registro', function () {
 })->name('register.type');
 
 // Rutas para formularios (consistentes con tu estructura de carpetas)
-Route::get('/registro-clinica', function () {
-    return view('auth.clinics.register'); // auth/clinics/register.blade.php
-})->name('clinics.register');
+/******************************************************** */
+// Ruta para el login de inicio de sesión
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
 
-Route::get('/registro-paciente', function () {
-    return view('auth.patient.register'); // auth/patient/register.blade.php
+// Ruta para el registro de paciente
+Route::get('/register/patient', function () {
+    return view('auth.patient-registration');
 })->name('patient.register');
 
+
+// Registro de doctor
+Route::get('/register/doctor', function () {
+    return view('auth.doctor-registry');
+})->name('doctor.register');
+/******************************************************** */
