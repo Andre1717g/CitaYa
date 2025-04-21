@@ -17,7 +17,7 @@
                     </a>
                 </li>
                 <li class="nav-item position-relative mx-2">
-                    <a class="nav-link text-white {{ request()->routeIs('medicos') ? 'active' : '' }}" href="#">
+                    <a class="nav-link text-white {{ request()->routeIs('medicos') ? 'active' : '' }}" href="{{ route('medicos') }}">
                         Médicos
                     </a>
                 </li>

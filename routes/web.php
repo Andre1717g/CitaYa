@@ -31,3 +31,11 @@ Route::get('/register/doctor', function () {
     return view('auth.doctor-registry');
 })->name('doctor.register');
 /******************************************************** */
+
+Route::get('/medicos', function () {
+    return view('auth.medicos');
+})->name('medicos');
+
+// Route::get('/medicos', function () {
+//     return view('medicos');
+// })->name('medicos');
