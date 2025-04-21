@@ -4,8 +4,8 @@
 
 @section('content')
 <!-- Hero Section - Portada principal -->
-<div class="hero-section bg-primary text-white py-5">
-
+<div class="hero-section bg-primary  text-white py-5">
+   
     <div class="container py-4">
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTemv7eIBG7Wn5-y9uE2hfxcRtRisgpDZNJg&s" alt="Médico" class="img-fluid rounded-4 shadow">
+                <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTemv7eIBG7Wn5-y9uE2hfxcRtRisgpDZNJg&s" alt="Médico" class="img-fluid rounded-4 shadow"> -->
             </div>
         </div>
     </div>
