@@ -57,13 +57,36 @@
                                 </div>
                             </div>
                             
+                            <!-- Descripción de la Especialidad -->
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" 
+                                              id="descripcion_especialidad" name="descripcion_especialidad" 
+                                              placeholder="Descripción de su especialidad" 
+                                              style="height: 100px" required></textarea>
+                                    <label for="descripcion_especialidad">Descripción de su especialidad</label>
+                                    <small class="text-muted">Describa su formación, experiencia y enfoque en esta especialidad.</small>
+                                </div>
+                            </div>
+                            
                             <!-- Ubicación Consultorio -->
                             <div class="col-md-12">
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" 
                                            id="ubicacion_consultorio" name="ubicacion_consultorio" 
-                                           placeholder="Ubicación del Consultorio" required>
-                                    <label for="ubicacion_consultorio">Ubicación del Consultorio</label>
+                                           placeholder="Dirección física del consultorio" required>
+                                    <label for="ubicacion_consultorio">Dirección física del consultorio</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Enlace Google Maps -->
+                            <div class="col-md-12">
+                                <div class="form-floating mb-3">
+                                    <input type="url" class="form-control" 
+                                           id="google_maps" name="google_maps" 
+                                           placeholder="Enlace de Google Maps" required>
+                                    <label for="google_maps">Enlace de Google Maps</label>
+                                    <small class="text-muted">Copie y pegue el enlace de Google Maps de la ubicación de su consultorio.</small>
                                 </div>
                             </div>
                             
