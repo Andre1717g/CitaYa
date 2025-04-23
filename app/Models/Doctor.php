@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Doctor extends Model
+class Doctor extends Authenticatable
 {
     use HasFactory;
+
+    protected $guard = 'doctor';
 
     public $timestamps = false;
 

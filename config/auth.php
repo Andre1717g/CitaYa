@@ -40,6 +40,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'paciente' => [
+            'driver' => 'session',
+            'provider' => 'pacientes',
+        ],
+
+        'doctor' => [
+            'driver' => 'session',
+            'provider' => 'doctores',
+        ],
     ],
 
     /*
@@ -62,13 +72,18 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'pacientes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Paciente::class,
+        ],
+
+        'doctores' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Doctor::class,
+        ],
     ],
 
     /*

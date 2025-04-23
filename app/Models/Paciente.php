@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Paciente extends Model
+class Paciente extends Authenticatable
 {
     use HasFactory;
+    protected $guard = 'paciente';
 
     public $timestamps = false;
 
@@ -30,6 +32,11 @@ class Paciente extends Model
     protected $hidden = [
         'contraseña',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->contraseña;
+    }
 
     protected $casts = [
         'fecha_nacimiento' => 'date',
