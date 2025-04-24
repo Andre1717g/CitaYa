@@ -2,6 +2,10 @@
 
 @section('title', 'Home')
 
+@section('navbar')
+    @include('partials.navbar')
+@endsection
+
 @section('content')
 <!-- Hero Section - Portada principal -->
 <div class="hero-section bg-white text-dark py-5">

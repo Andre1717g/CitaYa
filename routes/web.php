@@ -41,11 +41,19 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Áreas protegidas
-Route::middleware(['auth:paciente'])->group(function () {
-    Route::get('/paciente/dashboard', function () {
-        return view('paciente.dashboard');
-    })->name('paciente.dashboard');
+// Route::middleware(['auth:paciente'])->group(function () {
+//     Route::get('/paciente/dashboard', function () {
+//         return view('paciente.dashboard');
+//     })->name('paciente.dashboard');
+// });
+// En tu archivo routes/web.php
+Route::prefix('paciente')->name('paciente.')->middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('paciente.dashboard');  // Asegúrate de que esta vista existe
+    })->name('dashboard');
 });
+
+
 
 Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor/dashboard', function () {
@@ -57,6 +65,12 @@ Route::middleware(['auth:doctor'])->group(function () {
 Route::get('/medicos', function () {
     return view('auth.medicos');
 })->name('medicos');
+
+
+// Route::get('/citas', function () {
+//     return view('citas');
+// })->name('citas');
+
 
 // Route::get('/medicos', function () {
 //     return view('medicos');

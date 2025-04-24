@@ -2,6 +2,10 @@
 
 @section('title', 'Médicos')
 
+@section('navbar')
+    @include('partials.navbar')
+@endsection
+
 @section('content')
 <!-- Buscador simplificado para El Salvador -->
 <section id="search" class="py-5 bg-light">
@@ -98,7 +102,7 @@
                         </div>
                     </div>
                     <div class="card-footer bg-white border-0 pt-0">
-                        <a href="#" class="btn btn-outline-primary w-100">Ver disponibilidad</a>
+                        <a href="#" class="btn btn-outline-primary w-100">Ver detalle</a>
                     </div>
                 </div>
             </div>
