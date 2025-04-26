@@ -10,6 +10,8 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+
+
 // Ruta para la página de selección de tipo de registro
 Route::get('/tipo-registro', function () {
     return view('auth.register-type'); // Correcto: está en auth/
@@ -42,9 +44,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Áreas protegidas
 Route::middleware(['auth:paciente'])->group(function () {
-    Route::get('/paciente/dashboard', function () {
-        return view('paciente.dashboard');
-    })->name('paciente.dashboard');
+    Route::get('/paciente/inicio', function () {
+        return view('paciente.inicio');
+    })->name('paciente.inicio');
 });
 // En tu archivo routes/web.php
 // Route::prefix('paciente')->name('paciente.')->middleware(['auth'])->group(function () {

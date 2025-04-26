@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <!-- Logo -->
-        <a class="navbar-brand" href="{{ route('home') }}">
+        <a class="navbar-brand" href="http://127.0.0.1:8000/paciente/inicio">
             <img src="{{ asset('images/Cita bl.png') }}" alt="CitaYa" style="height:100px;width:auto;">
         </a>
 
@@ -12,7 +12,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto align-items-center">
                 <!-- Inicio -->
-                <li class="nav-item mx-2"><a class="nav-link text-white" href="#">Inicio</a></li>
+                <li class="nav-item mx-2"><a class="nav-link text-white" href="http://127.0.0.1:8000/paciente/inicio">Inicio</a></li>
+
 
                 <!-- Médicos -->
                 <li class="nav-item mx-2"><a class="nav-link text-white" href="#">Médicos</a></li>

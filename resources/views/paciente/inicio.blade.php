@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Home Paciente')
 
 @section('navbar')
-    @include('partials.navbar')
+    @include('partials.navbar-paciente')
 @endsection
 
 @section('content')
