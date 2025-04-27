@@ -67,6 +67,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         // Redirigir al home
-        return redirect('/');
+        return redirect()->route('login')->with('status', 'Has cerrado sesión correctamente.');
     }
 }

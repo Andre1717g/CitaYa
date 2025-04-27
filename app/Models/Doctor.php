@@ -3,18 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class Doctor extends Authenticatable
 {
     use HasFactory;
 
     protected $guard = 'doctor';
-
     public $timestamps = false;
-
     protected $table = 'doctor';
 
     protected $fillable = [
@@ -51,5 +48,11 @@ class Doctor extends Authenticatable
     {
         if (!$value) return null;
         return 'data:image/jpeg;base64,' . $value;
+    }
+
+    // 🔥 Este método es el que arregla el login
+    public function getAuthPassword()
+    {
+        return $this->contraseña;
     }
 }
