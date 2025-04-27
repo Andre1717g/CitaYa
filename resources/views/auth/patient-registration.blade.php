@@ -120,8 +120,7 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="contraseña" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control @error('contraseña') is-invalid @enderror" 
-                                       id="contraseña" name="contraseña" required minlength="8">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required minlength="8">
                                 <div class="form-text">Mínimo 8 caracteres</div>
                                 @error('contraseña')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -129,8 +128,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="contraseña_confirmation" class="form-label">Confirmar Contraseña</label>
-                                <input type="password" class="form-control" 
-                                       id="contraseña_confirmation" name="contraseña_confirmation" required>
+                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                             </div>
                         </div>
 
