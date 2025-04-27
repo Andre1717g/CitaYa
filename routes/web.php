@@ -62,11 +62,15 @@ Route::middleware(['auth:doctor'])->group(function () {
         return view('doctor.dashboard');
     })->name('doctor.dashboard');
 });
-/******************************************************** */
 
+Route::get('/medicos', [DoctorController::class, 'index'])->name('medicos');
+/******************************************************** */
+/*
 Route::get('/medicos', function () {
     return view('medicos');
-})->name('medicos');
+})->name('medicos'); */
+
+
 
 
 // Route::get('/citas', function () {

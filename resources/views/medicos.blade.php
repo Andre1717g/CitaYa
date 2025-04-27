@@ -18,52 +18,42 @@
                             <i class="fas fa-search-plus me-2"></i> Encuentra al médico ideal
                         </h2>
                         
-                        <form class="row g-3">
-                            <!-- Especialidad -->
-                            <div class="col-md-3">
-                                <label class="form-label small text-muted">Especialidad médica</label>
-                                <select class="form-select form-select-lg shadow-sm">
-                                    <option selected>Especialidades</option>
-                                    <option>Cardiología</option>
-                                    <option>Pediatría</option>
-                                    <option>Dermatología</option>
-                                    <option>Ginecología</option>
-                                    <option>Medicina General</option>
-                                    <option>Ortopedia</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Departamento -->
-                            <div class="col-md-3">
-                                <label class="form-label small text-muted">Departamento</label>
-                                <select name="departamento" class="form-select form-select-lg shadow-sm">
-                                    <option selected>Todo El Salvador</option>
-                                    <option>San Salvador</option>
-                                    <option>Santa Ana</option>
-                                    <option>San Miguel</option>
-                                    <option>La Libertad</option>
-                                    <option>Sonsonate</option>
-                                    <option>La Paz</option>
-                                    <option>Chalatenango</option>
-                                    <!-- Agrega todos los departamentos -->
-                                </select>
-                            </div>
-                            
-                            <!-- Municipio -->
-                            <div class="col-md-5">
-                                <label class="form-label small text-muted">Municipio</label>
-                                <select name="municipio" class="form-select form-select-lg shadow-sm" disabled>
-                                    <option selected>Primero seleccione departamento</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Botón de búsqueda -->
-                            <div class="col-md-1 d-flex align-items-end">
-                                <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill shadow">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </form>
+                        <form method="GET" action="{{ route('medicos') }}" class="row g-3">
+    <!-- Buscar por nombre o apellido -->
+    <div class="col-md-3">
+        <label class="form-label small text-muted">Buscar por nombre o apellido</label>
+        <input type="text" name="q" class="form-control form-control-lg shadow-sm" 
+            placeholder="Ej: Carlos, Mendoza..." value="{{ request('q') }}">
+    </div>
+
+    <!-- Filtrar por especialidad -->
+    <div class="col-md-3">
+        <label class="form-label small text-muted">Especialidad médica</label>
+        <select name="especialidad" class="form-select form-select-lg shadow-sm">
+            <option value="">Todas las especialidades</option>
+            @foreach($especialidades as $especialidad)
+                <option value="{{ $especialidad }}" 
+                    {{ request('especialidad') == $especialidad ? 'selected' : '' }}>
+                    {{ $especialidad }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <!-- Buscar por dirección consultorio -->
+    <div class="col-md-3">
+        <label class="form-label small text-muted">Buscar por dirección del consultorio</label>
+        <input type="text" name="direccion" class="form-control form-control-lg shadow-sm" 
+            placeholder="Ej: San Salvador, Santa Ana..." value="{{ request('direccion') }}">
+    </div>
+
+    <!-- Botón de búsqueda -->
+    <div class="col-md-3 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill shadow">
+            <i class="fas fa-search"></i> Buscar
+        </button>
+    </div>
+</form>
                     </div>
                 </div>
             </div>
@@ -75,39 +65,40 @@
 <section class="py-5">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
-                    <div class="card-img-top bg-light" style="height: 200px; background-image: url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2'); background-size: cover;"></div>
+            @forelse($doctores as $doctor)
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                    @if($doctor->foto_rostro)
+                        <img src="{{ $doctor->foto_rostro }}" class="card-img-top" alt="Foto del Doctor" style="height: 200px; object-fit: cover;">
+                    @else
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="fas fa-user-md fa-3x text-muted"></i>
+                        </div>
+                    @endif
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start">
-                            <div>
-                                <h3 class="h5 mb-1">Dr. Carlos Mendoza</h3>
-                                <span class="text-muted small">Cardiólogo</span>
-                            </div>
-                            <span class="badge bg-success">Disponible hoy</span>
-                        </div>
-                        <div class="mt-3">
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="fas fa-map-marker-alt text-muted me-2"></i>
-                                <span class="small">Clínica San Felipe, Lima</span>
-                            </div>
-                            <div class="d-flex align-items-center mb-2">
-                                <i class="fas fa-star text-warning me-2"></i>
-                                <span class="small">4.8 (120 opiniones)</span>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-money-bill-wave text-muted me-2"></i>
-                                <span class="small">Desde S/120 por consulta</span>
+                            <h3 class="h5 mb-1">{{ $doctor->nombres }} {{ $doctor->apellidos }}</h3>
+                            <p class="text-muted small">{{ $doctor->area_salud }}</p>
+                            <div class="mt-2">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-map-marker-alt text-muted me-2"></i>
+                                    <span class="small">{{ $doctor->direccion_consultorio }}</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-link text-muted me-2"></i>
+                                    <a href="{{ $doctor->enlace_google_maps }}" class="small text-primary" target="_blank">Ubicación</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer bg-white border-0 pt-0">
-                        <a href="#" class="btn btn-outline-primary w-100">Ver detalle</a>
+                        <div class="card-footer bg-white border-0">
+                            <a href="#" class="btn btn-outline-primary w-100">Ver Detalle</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Más cards de médicos pueden agregarse aquí -->
+            @empty
+                <div class="col-12 text-center">
+                    <p class="text-muted">No se encontraron médicos.</p>
+                </div>
+            @endforelse
         </div>
     </div>
 </section>

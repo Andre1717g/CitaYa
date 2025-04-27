@@ -46,11 +46,14 @@ class Doctor extends Authenticatable
 
     public function getFotoRostroAttribute($value)
     {
-        if (!$value) return null;
+        if (!$value) {
+            return null;
+        }
+ 
+        // Asumir que es JPEG  .jpeg o .jpg en validaciones
         return 'data:image/jpeg;base64,' . $value;
     }
 
-    // 🔥 Este método es el que arregla el login
     public function getAuthPassword()
     {
         return $this->contraseña;

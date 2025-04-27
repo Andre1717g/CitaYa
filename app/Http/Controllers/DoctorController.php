@@ -55,4 +55,35 @@ class DoctorController extends Controller
             'success' => '¡Registro como doctor completado exitosamente!'
         ]);
     }
+
+    public function index(Request $request)
+    {
+        $query = Doctor::query();
+
+        // Buscar por nombre o apellido
+        if ($request->filled('q')) {
+            $search = $request->q;
+            $query->where(function($q) use ($search) {
+                $q->where('nombres', 'like', "%$search%")
+                ->orWhere('apellidos', 'like', "%$search%");
+            });
+        }
+
+        // Filtrar por especialidad
+        if ($request->filled('especialidad') && $request->especialidad !== '') {
+            $query->where('area_salud', $request->especialidad);
+        }
+
+        // Buscar por dirección
+        if ($request->filled('direccion')) {
+            $direccion = $request->direccion;
+            $query->where('direccion_consultorio', 'like', "%$direccion%");
+        }
+
+        $doctores = $query->get();
+        $especialidades = Doctor::select('area_salud')->distinct()->orderBy('area_salud')->pluck('area_salud');
+
+        return view('medicos', compact('doctores', 'especialidades'));
+    }
+
 }
