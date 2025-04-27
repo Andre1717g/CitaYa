@@ -10,7 +10,10 @@ class LoginController extends Controller
     // Mostrar el formulario de login
     public function showLoginForm()
     {
-        return view('auth.login');
+        return response()->view('auth.login')
+            ->header('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0')
+            ->header('Pragma', 'no-cache')
+            ->header('Expires', 'Sat, 01 Jan 2000 00:00:00 GMT');
     }
 
     // Lógica para autenticar al usuario (paciente o doctor)

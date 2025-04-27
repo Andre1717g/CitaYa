@@ -20,64 +20,64 @@
 
                 <!-- Cuerpo del formulario -->
                 <div class="card-body p-5">
-                <form method="POST" action="{{ route('login.submit') }}">
-    @csrf
-    
-    <!-- Selector de tipo de usuario (añade value) -->
-    <div class="mb-4">
-        <label class="form-label fw-bold">¿Cómo deseas ingresar?</label>
-        <div class="btn-group w-100 shadow-sm" role="group">
-            <!-- Opción Paciente -->
-            <input type="radio" class="btn-check" name="user_type" id="patient" value="patient" checked>
-            <label class="btn btn-outline-primary py-3" for="patient">
-                <i class="fas fa-user-injured me-2"></i> Paciente
-            </label>
+                    <form method="POST" action="{{ route('login.submit') }}">
+                        @csrf
 
-            <!-- Opción Doctor -->
-            <input type="radio" class="btn-check" name="user_type" id="doctor" value="doctor">
-            <label class="btn btn-outline-primary py-3" for="doctor">
-                <i class="fas fa-user-md me-2"></i> Médico
-            </label>
-        </div>
-    </div>
+                        <!-- Selector de tipo de usuario (añade value) -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">¿Cómo deseas ingresar?</label>
+                            <div class="btn-group w-100 shadow-sm" role="group">
+                                <!-- Opción Paciente -->
+                                <input type="radio" class="btn-check" name="user_type" id="patient" value="patient" checked>
+                                <label class="btn btn-outline-primary py-3" for="patient">
+                                    <i class="fas fa-user-injured me-2"></i> Paciente
+                                </label>
 
-    <!-- Email (añade name y manejo de errores) -->
-    <div class="mb-4">
-        <label class="form-label fw-bold">Correo Electrónico</label>
-        <div class="input-group">
-            <span class="input-group-text bg-primary bg-opacity-10">
-                <i class="fas fa-envelope text-primary"></i>
-            </span>
-            <input type="email" name="email" class="form-control form-control-lg @error('email') is-invalid @enderror" 
-                   value="{{ old('email') }}" placeholder="ejemplo@correo.com" required>
-        </div>
-        @error('email')
-            <div class="text-danger small mt-1">{{ $message }}</div>
-        @enderror
-    </div>
+                                <!-- Opción Doctor -->
+                                <input type="radio" class="btn-check" name="user_type" id="doctor" value="doctor">
+                                <label class="btn btn-outline-primary py-3" for="doctor">
+                                    <i class="fas fa-user-md me-2"></i> Médico
+                                </label>
+                            </div>
+                        </div>
 
-    <!-- Contraseña (añade name) -->
-    <div class="mb-4">
-        <label class="form-label fw-bold">Contraseña</label>
-        <div class="input-group">
-            <span class="input-group-text bg-primary bg-opacity-10">
-                <i class="fas fa-lock text-primary"></i>
-            </span>
-            <input type="password" name="password" class="form-control form-control-lg @error('password') is-invalid @enderror" 
-                   placeholder="••••••••" required>
-        </div>
-        @error('password')
-            <div class="text-danger small mt-1">{{ $message }}</div>
-        @enderror
-    </div>
+                        <!-- Email (añade name y manejo de errores) -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Correo Electrónico</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-primary bg-opacity-10">
+                                    <i class="fas fa-envelope text-primary"></i>
+                                </span>
+                                <input type="email" name="email" class="form-control form-control-lg @error('email') is-invalid @enderror" 
+                                    value="{{ old('email') }}" placeholder="ejemplo@correo.com" required>
+                            </div>
+                            @error('email')
+                                <div class="text-danger small mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-    <!-- Botón de acción (cambia a type="submit") -->
-    <div class="d-grid mt-4">
-        <button type="submit" class="btn btn-primary btn-lg py-3 fw-bold">
-            <i class="fas fa-sign-in-alt me-2"></i> Ingresar
-        </button>
-    </div>
-</form>
+                        <!-- Contraseña (añade name) -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-primary bg-opacity-10">
+                                    <i class="fas fa-lock text-primary"></i>
+                                </span>
+                                <input type="password" name="password" class="form-control form-control-lg @error('password') is-invalid @enderror" 
+                                    placeholder="••••••••" required>
+                            </div>
+                            @error('password')
+                                <div class="text-danger small mt-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Botón de acción (cambia a type="submit") -->
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg py-3 fw-bold">
+                                <i class="fas fa-sign-in-alt me-2"></i> Ingresar
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
                 <!-- Pie de tarjeta -->
@@ -124,6 +124,11 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Tipo de usuario seleccionado:', this.value);
         });
     });
+
+    // Verificar si la página se cargó desde la caché del navegador y recargar
+    if (performance.navigation.type === 2) { // Verifica si la página fue cargada desde el cache
+        window.location.reload(true); // Recarga la página
+    }
 });
 </script>
 @endsection
