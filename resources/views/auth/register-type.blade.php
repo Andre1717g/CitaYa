@@ -3,6 +3,9 @@
 @section('title', 'Registro')
 
 @section('content')
+@include('partials.navbar')
+
+{{-- Sección de registro --}}
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-10 text-center mb-5">
