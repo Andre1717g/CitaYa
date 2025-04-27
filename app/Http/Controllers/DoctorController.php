@@ -2,12 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Doctor;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
+    // Método para ver el perfil del doctor autenticado
+    public function perfil()
+    {
+        // Verifica si el doctor está autenticado
+        if (auth()->guard('doctor')->check()) {
+            // Obtén la información del doctor autenticado
+            $doctor = auth()->guard('doctor')->user(); // Usar auth()->guard('doctor') para obtener al doctor
+
+            // Retorna la vista con los datos del doctor
+            return view('doctor.perfil', compact('doctor'));
+        } else {
+            // Si no está autenticado, redirigir al login
+            return redirect()->route('login'); // Redirige a la página de login
+        }
+    }
+
+    // Método para crear un nuevo doctor (registro)
     public function create()
     {
         return view('auth.doctor-registry', [
@@ -15,8 +32,10 @@ class DoctorController extends Controller
         ]);
     }
 
+    // Método para almacenar los datos del doctor
     public function store(Request $request)
     {
+        // Validación de los datos
         $validated = $request->validate([
             'nombres' => 'required|string|max:100',
             'apellidos' => 'required|string|max:100',
@@ -24,7 +43,7 @@ class DoctorController extends Controller
             'descripcion_especialidad' => 'required|string',
             'ubicacion_consultorio' => 'required|string',
             'google_maps' => 'required|url',
-            'email' => 'required|email|unique:doctor,correo_electronico',
+            'email' => 'required|email|unique:doctors,correo_electronico', // Asegúrate de que la tabla sea `doctors`
             'password' => 'required|min:8|confirmed',
             'foto_rostro' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'terms' => 'required|accepted'
@@ -39,16 +58,17 @@ class DoctorController extends Controller
             'direccion_consultorio' => $validated['ubicacion_consultorio'],
             'enlace_google_maps' => $validated['google_maps'],
             'correo_electronico' => $validated['email'],
-            'contraseña' => $validated['password'] // El mutador en el modelo hará el hash
+            'contraseña' => Hash::make($validated['password']) // Usar Hash::make para el password
         ];
 
         // Procesar la imagen solo si está presente
         if ($request->hasFile('foto_rostro')) {
+            // Almacenar la imagen en el directorio de almacenamiento y obtener la ruta
             $image = $request->file('foto_rostro');
-            $doctorData['foto_rostro'] = base64_encode(file_get_contents($image->getRealPath()));
+            $doctorData['foto_rostro'] = file_get_contents($image->getRealPath());
         }
 
-        // Crear el doctor
+        // Crear el doctor en la base de datos
         Doctor::create($doctorData);
 
         return redirect()->route('home')->with([

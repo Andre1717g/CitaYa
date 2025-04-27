@@ -61,6 +61,12 @@ Route::middleware(['auth:doctor'])->group(function () {
     Route::get('/doctor/dashboard', function () {
         return view('doctor.dashboard');
     })->name('doctor.dashboard');
+
+    // Ruta para el perfil del doctor
+    Route::get('/doctor/perfil', [DoctorController::class, 'perfil'])->name('doctor.perfil');
+
+    // Ruta para mostrar la foto del doctor
+    // Route::get('/doctor/{id}/foto', [DoctorController::class, 'mostrarFoto'])->name('doctor.foto');
 });
 
 Route::get('/medicos', [DoctorController::class, 'index'])->name('medicos');
