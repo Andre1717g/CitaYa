@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DoctorPerfilController;
+
 
 // Ruta principal
 Route::get('/', function () {
@@ -67,6 +69,13 @@ Route::middleware(['auth:doctor'])->group(function () {
 
     // Ruta para mostrar la foto del doctor
     // Route::get('/doctor/{id}/foto', [DoctorController::class, 'mostrarFoto'])->name('doctor.foto');
+
+// Mostrar el formulario de edición
+Route::get('/doctor/perfil/editar', [DoctorPerfilController::class, 'edit'])->name('doctor.perfil.editar');
+
+// Procesar la actualización
+Route::put('/doctor/perfil/actualizar', [DoctorPerfilController::class, 'update'])->name('doctor.perfil.actualizar');
+
 });
 
 Route::get('/medicos', [DoctorController::class, 'index'])->name('medicos');
