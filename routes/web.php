@@ -76,6 +76,7 @@ Route::get('/doctor/perfil/editar', [DoctorPerfilController::class, 'edit'])->na
 // Procesar la actualización
 Route::put('/doctor/perfil/actualizar', [DoctorPerfilController::class, 'update'])->name('doctor.perfil.actualizar');
 
+
 });
 
 Route::get('/medicos', [DoctorController::class, 'index'])->name('medicos');

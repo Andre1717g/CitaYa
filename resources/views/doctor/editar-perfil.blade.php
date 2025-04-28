@@ -51,7 +51,20 @@
 
                         <div class="mb-3">
                             <label for="area_salud" class="form-label">Área de Salud</label>
-                            <input type="text" class="form-control" id="area_salud" name="area_salud" value="{{ $doctor->area_salud }}" required>
+                            <select class="form-select @error('area_salud') is-invalid @enderror" id="area_salud" name="area_salud" required>
+                                <option value="" selected disabled>Seleccione una opción</option>
+                                <option value="Medicina General" {{ old('area_salud', $doctor->area_salud) == 'Medicina General' ? 'selected' : '' }}>Medicina General</option>
+                                <option value="Cardiología" {{ old('area_salud', $doctor->area_salud) == 'Cardiología' ? 'selected' : '' }}>Cardiología</option>
+                                <option value="Dermatología" {{ old('area_salud', $doctor->area_salud) == 'Dermatología' ? 'selected' : '' }}>Dermatología</option>
+                                <option value="Ginecología" {{ old('area_salud', $doctor->area_salud) == 'Ginecología' ? 'selected' : '' }}>Ginecología</option>
+                                <option value="Pediatría" {{ old('area_salud', $doctor->area_salud) == 'Pediatría' ? 'selected' : '' }}>Pediatría</option>
+                                <option value="Psiquiatría" {{ old('area_salud', $doctor->area_salud) == 'Psiquiatría' ? 'selected' : '' }}>Psiquiatría</option>
+                                <option value="Oftalmología" {{ old('area_salud', $doctor->area_salud) == 'Oftalmología' ? 'selected' : '' }}>Oftalmología</option>
+                                <option value="Neurología" {{ old('area_salud', $doctor->area_salud) == 'Neurología' ? 'selected' : '' }}>Neurología</option>                        
+                            </select>
+                            @error('area_salud')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-3">

@@ -22,27 +22,33 @@ class DoctorPerfilController extends Controller
             'nombres' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
             'descripcion_especialidad' => 'required|string|max:255',
+            'area_salud' => 'required|string|max:255', // Validación para el campo "Área de Salud"
             'direccion_consultorio' => 'required|string|max:255',
             'enlace_google_maps' => 'nullable|url',
             'correo_electronico' => 'required|email|max:255',
             'foto_rostro' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
+        // Actualización de los campos del doctor
         $doctor->nombres = $request->nombres;
         $doctor->apellidos = $request->apellidos;
         $doctor->descripcion_especialidad = $request->descripcion_especialidad;
+        $doctor->area_salud = $request->area_salud; // Actualización del campo "Área de Salud"
         $doctor->direccion_consultorio = $request->direccion_consultorio;
         $doctor->enlace_google_maps = $request->enlace_google_maps;
         $doctor->correo_electronico = $request->correo_electronico;
 
+        // Si se sube una nueva foto de perfil, se procesa
         if ($request->hasFile('foto_rostro')) {
             $image = $request->file('foto_rostro');
             $base64Image = base64_encode(file_get_contents($image->getRealPath()));
             $doctor->foto_rostro = $base64Image;
         }
 
+        // Guardamos los cambios en la base de datos
         $doctor->save();
 
+        // Redirigimos con un mensaje de éxito
         return redirect()->route('doctor.perfil.editar')->with('success', 'Perfil actualizado correctamente.');
     }
 }
