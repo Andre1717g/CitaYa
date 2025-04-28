@@ -60,9 +60,9 @@ Route::middleware(['auth:paciente'])->group(function () {
 
 
 Route::middleware(['auth:doctor'])->group(function () {
-    Route::get('/doctor/dashboard', function () {
-        return view('doctor.dashboard');
-    })->name('doctor.dashboard');
+    Route::get('/doctor/citas', function () {
+        return view('doctor.citas');
+    })->name('doctor.citas');
 
     // Ruta para el perfil del doctor
     Route::get('/doctor/perfil', [DoctorController::class, 'perfil'])->name('doctor.perfil');
@@ -76,6 +76,9 @@ Route::get('/doctor/perfil/editar', [DoctorPerfilController::class, 'edit'])->na
 // Procesar la actualización
 Route::put('/doctor/perfil/actualizar', [DoctorPerfilController::class, 'update'])->name('doctor.perfil.actualizar');
 
+Route::get('/doctor/historial', function () {
+    return view('doctor.historial');
+})->name('doctor.historial');
 
 });
 
@@ -85,6 +88,8 @@ Route::get('/medicos', [DoctorController::class, 'index'])->name('medicos');
 Route::get('/medicos', function () {
     return view('medicos');
 })->name('medicos'); */
+
+
 
 
 

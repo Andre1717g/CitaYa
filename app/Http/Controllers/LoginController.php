@@ -42,7 +42,8 @@ class LoginController extends Controller
             
             // Redirigir al dashboard correspondiente según el tipo de usuario
             return redirect()->route(
-                $guard == 'paciente' ? 'paciente.inicio' : 'doctor.dashboard'
+                $guard == 'paciente' ? 'paciente.inicio' : 'doctor.citas',
+                ['user' => Auth::guard($guard)->user()]
             );
         }
 

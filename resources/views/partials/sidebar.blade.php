@@ -2,21 +2,35 @@
 <nav class="col-md-2 d-none d-md-block sidebar vh-100 bg-white border-end shadow-sm">
     <div class="position-sticky pt-4">
         <ul class="nav flex-column px-3">
-            <li class="nav-item mb-3">
-                <a class="nav-link d-flex align-items-center fw-semibold @if(request()->is('doctor/dashboard')) active-link @endif" href="{{ url('/doctor/dashboard') }}">
-                    <i class="fas fa-home me-3"></i> Inicio
-                </a>
-            </li>
+            <!-- Citas -->
             <li class="nav-item mb-3">
                 <a class="nav-link d-flex align-items-center fw-semibold @if(request()->is('doctor/citas')) active-link @endif" href="{{ url('/doctor/citas') }}">
-                    <i class="fas fa-calendar-check me-3"></i> Mis Citas
+                    <i class="fas fa-calendar-check me-3"></i> Citas
                 </a>
             </li>
+
+            <!-- Perfil -->
             <li class="nav-item mb-3">
                 <a class="nav-link d-flex align-items-center fw-semibold @if(request()->is('doctor/perfil')) active-link @endif" href="{{ url('/doctor/perfil') }}">
                     <i class="fas fa-user-md me-3"></i> Perfil
                 </a>
             </li>
+
+            <!-- Horario -->
+            <li class="nav-item mb-3">
+                <a class="nav-link d-flex align-items-center fw-semibold @if(request()->is('doctor/horario')) active-link @endif" href="{{ url('/doctor/horario') }}">
+                    <i class="fas fa-clock me-3"></i> Horario
+                </a>
+            </li>
+
+            <!-- Historial -->
+            <li class="nav-item mb-3">
+                <a class="nav-link d-flex align-items-center fw-semibold @if(request()->is('doctor/historial')) active-link @endif" href="{{ url('/doctor/historial') }}">
+                    <i class="fas fa-history me-3"></i> Historial
+                </a>
+            </li>
+
+            <!-- Cerrar Sesión -->
             <li class="nav-item mt-5">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
