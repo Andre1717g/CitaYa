@@ -5,6 +5,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DoctorPerfilController;
+use App\Http\Controllers\CitaController;
 
 
 // Ruta principal
@@ -110,19 +111,12 @@ Route::get('/medicos', function () {
 //     return view('medicos');
 // })->name('medicos');
 
+//Route::get('/doctor/citas', [CitaController::class, 'index'])->name('doctor.citas');
 
 
-
-/* POR SI TE SIRVEN USA ESTAS RUTAS
-Route::get('/horarios/{doctor_id}', [HorarioDoctorController::class, 'index']);
-Route::post('/horarios', [HorarioDoctorController::class, 'store']);
-
-Route::get('/citas', [CitaController::class, 'index']);
-Route::post('/citas', [CitaController::class, 'store']);
-Route::put('/citas/{id}/confirmar', [CitaController::class, 'confirmar']);
-Route::put('/citas/{id}/cancelar', [CitaController::class, 'cancelar']);
-Route::put('/citas/{id}/finalizar', [CitaController::class, 'finalizar']);
-
-Route::post('/historial', [HistorialMedicoController::class, 'store']);
-Route::get('/historial/paciente/{paciente_id}', [HistorialMedicoController::class, 'showByPaciente']);
-*/
+Route::get('/doctor/citas', [CitaController::class, 'index'])->name('doctor.citas');
+Route::post('/citas', [CitaController::class, 'store'])->name('citas.store');
+Route::get('/citas/{id}/confirmar', [CitaController::class, 'confirmar'])->name('citas.confirmar');
+Route::get('/citas/{id}/cancelar', [CitaController::class, 'cancelar'])->name('citas.cancelar');
+Route::get('/citas/{id}/finalizar', [CitaController::class, 'finalizar'])->name('citas.finalizar');
+Route::put('/citas/{id}/reprogramar', [CitaController::class, 'reprogramar'])->name('citas.reprogramar');
