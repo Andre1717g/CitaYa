@@ -49,6 +49,13 @@ Route::middleware(['auth:paciente'])->group(function () {
     Route::get('/paciente/inicio', function () {
         return view('paciente.inicio');
     })->name('paciente.inicio');
+
+    Route::get('/paciente/perfil', [PacienteController::class, 'perfil'])->name('paciente.perfil');
+
+    Route::get('/paciente/perfil/editar', [PacienteController::class, 'edit'])->name('paciente.perfil.editar');
+
+    Route::put('/paciente/perfil', [PacienteController::class, 'update'])->name('paciente.perfil.update');
+
 });
 // En tu archivo routes/web.php
 // Route::prefix('paciente')->name('paciente.')->middleware(['auth'])->group(function () {

@@ -22,7 +22,10 @@
                 <li class="nav-item mx-2"><a class="nav-link text-white" href="#">Citas</a></li>
 
                 <!-- Perfil -->
-                <li class="nav-item mx-2"><a class="nav-link text-white" href="#">Perfil</a></li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-white" href="{{ route('paciente.perfil') }}">Perfil</a>
+                </li>
+
 
                 <!-- Cerrar sesión -->
                 <li class="nav-item mx-2">
