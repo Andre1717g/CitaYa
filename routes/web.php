@@ -5,6 +5,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DoctorPerfilController;
+use App\Http\Controllers\HorarioDoctorController;
 
 
 // Ruta principal
@@ -86,6 +87,24 @@ Route::put('/doctor/perfil/actualizar', [DoctorPerfilController::class, 'update'
 Route::get('/doctor/historial', function () {
     return view('doctor.historial');
 })->name('doctor.historial');
+
+
+// Mostrar formulario de horario
+Route::get('/doctor/horario', function () {
+    return view('doctor.horario'); // Asegúrate de que sea "horario.blade.php"
+})->name('doctor.horario');
+
+// Guardar horario
+Route::get('/doctor/horario', [HorarioDoctorController::class, 'index'])->name('doctor.horario'); // Ver horarios
+Route::post('/doctor/horario', [HorarioDoctorController::class, 'store'])->name('doctor.horario.store');
+
+
+// Editar horario
+Route::get('/doctor/horarios/{id}/editar', [HorarioDoctorController::class, 'edit'])->name('doctor.horarios.edit');
+Route::put('/doctor/horarios/{id}', [HorarioDoctorController::class, 'update'])->name('doctor.horarios.update');
+
+// Eliminar horario (ESTA ES LA QUE TE FALTA)
+Route::delete('/doctor/horarios/{id}', [HorarioDoctorController::class, 'destroy'])->name('doctor.horarios.destroy');
 
 });
 
