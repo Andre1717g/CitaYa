@@ -5,6 +5,8 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DoctorPerfilController;
+use App\Http\Controllers\HorarioDoctorController;
+use App\Http\Controllers\CitaController;
 
 
 // Ruta principal

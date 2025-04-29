@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up()
     {
-       /* Schema::create('horario_doctor', function (Blueprint $table) {
+       Schema::create('horario_doctor', function (Blueprint $table) {
             $table->id();
             $table->foreignId('doctor_id')->constrained('doctor')->onDelete('cascade');
             $table->string('dia_semana', 15);
             $table->time('hora_inicio');
             $table->time('hora_fin');
             $table->timestamps();
-        });*/
+        });
     }
 
     /**

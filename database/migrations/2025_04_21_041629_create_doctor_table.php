@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        /*Schema::create('doctor', function (Blueprint $table) {
+        Schema::create('doctor', function (Blueprint $table) {
             $table->id();
             $table->string('nombres', 100);
             $table->string('apellidos', 100);
@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->text('contraseña');
             $table->binary('foto_rostro')->nullable();
             $table->timestamps();
-        }); */
+        }); 
     }
 
     public function down()

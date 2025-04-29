@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        /*Schema::create('historial_medico', function (Blueprint $table) {
+        Schema::create('historial_medico', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cita_id')->constrained('cita')->onDelete('cascade');
             $table->text('descripcion');
             $table->text('receta')->nullable();
             $table->timestamp('fecha_registro')->useCurrent();
-        }); */
+        }); 
     }
     /**
      * Reverse the migrations.

@@ -39,7 +39,7 @@ class DoctorController extends Controller
             'foto_rostro' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'terms' => 'required|accepted'
         ]);
-    
+
         $doctorData = [
             'nombres' => $validated['nombres'],
             'apellidos' => $validated['apellidos'],
@@ -50,14 +50,14 @@ class DoctorController extends Controller
             'correo_electronico' => $validated['email'],
             'contraseña' => $validated['password']
         ];
-    
+
         if ($request->hasFile('foto_rostro')) {
             $image = $request->file('foto_rostro');
             $doctorData['foto_rostro'] = base64_encode(file_get_contents($image->getRealPath()));
         }
-    
+
         Doctor::create($doctorData);
-    
+
         return redirect()->route('home')->with([
             'success' => '¡Registro como doctor completado exitosamente!'
         ]);
@@ -89,4 +89,14 @@ class DoctorController extends Controller
 
         return view('medicos', compact('doctores', 'especialidades'));
     }
-} 
+
+    // ✅ MÉTODO AGREGADO PARA MOSTRAR LA VISTA DE HORARIO
+    public function horario()
+    {
+        if (auth()->guard('doctor')->check()) {
+            return view('doctor.horario');
+        } else {
+            return redirect()->route('login');
+        }
+    }
+}
