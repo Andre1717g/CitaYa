@@ -108,7 +108,12 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                         <label for="paciente_id" class="form-label">Paciente</label>
-                        <input type="number" name="paciente_id" id="paciente_id" class="form-control" required>
+                        <select name="paciente_id" id="paciente_id" class="form-select" required>
+                            <option value="">Seleccione un paciente</option>
+                            @foreach($pacientes as $paciente)
+                                <option value="{{ $paciente->id }}">{{ $paciente->nombres }} {{ $paciente->apellidos }}</option>
+                            @endforeach
+                        </select>
                         </div>
                         <div class="col-md-6">
                         <label for="fecha" class="form-label">Fecha</label>

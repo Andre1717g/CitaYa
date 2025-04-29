@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cita;
 use Illuminate\Http\Request;
+use App\Models\Paciente;
 
 class CitaController extends Controller
 {
@@ -11,14 +12,21 @@ class CitaController extends Controller
     {
         $doctorId = auth('doctor')->user()->id;
     
+        // Obtener las citas del doctor actual
         $citas = Cita::with(['doctor', 'paciente'])
             ->where('doctor_id', $doctorId)
             ->when($request->paciente_id, fn($q) => $q->where('paciente_id', $request->paciente_id))
             ->get();
     
-        return view('doctor.citas', compact('citas'));
-    }
+        // Obtener solo los pacientes que ya han tenido citas con este doctor
+        $pacientes = Paciente::whereHas('citas', function ($query) use ($doctorId) {
+            $query->where('doctor_id', $doctorId);
+        })->get();
     
+        return view('doctor.citas', compact('citas', 'pacientes'));
+    }
+
+
     public function store(Request $request)
     {
         $request->validate([
