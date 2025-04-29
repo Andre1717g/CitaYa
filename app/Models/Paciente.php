@@ -81,4 +81,9 @@ class Paciente extends Authenticatable
 
         return 'data:image/jpeg;base64,' . base64_encode($value);
     }
+
+    public function citas()
+    {
+        return $this->hasMany(Cita::class);
+    }
 }

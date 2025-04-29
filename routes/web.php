@@ -109,3 +109,20 @@ Route::get('/medicos', function () {
 // Route::get('/medicos', function () {
 //     return view('medicos');
 // })->name('medicos');
+
+
+
+
+/* POR SI TE SIRVEN USA ESTAS RUTAS
+Route::get('/horarios/{doctor_id}', [HorarioDoctorController::class, 'index']);
+Route::post('/horarios', [HorarioDoctorController::class, 'store']);
+
+Route::get('/citas', [CitaController::class, 'index']);
+Route::post('/citas', [CitaController::class, 'store']);
+Route::put('/citas/{id}/confirmar', [CitaController::class, 'confirmar']);
+Route::put('/citas/{id}/cancelar', [CitaController::class, 'cancelar']);
+Route::put('/citas/{id}/finalizar', [CitaController::class, 'finalizar']);
+
+Route::post('/historial', [HistorialMedicoController::class, 'store']);
+Route::get('/historial/paciente/{paciente_id}', [HistorialMedicoController::class, 'showByPaciente']);
+*/

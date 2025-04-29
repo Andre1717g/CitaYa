@@ -58,4 +58,14 @@ class Doctor extends Authenticatable
     {
         return $this->contraseña;
     }
+
+    public function horarios()
+    {
+        return $this->hasMany(HorarioDoctor::class);
+    }
+
+    public function citas()
+    {
+        return $this->hasMany(Cita::class);
+    }
 }

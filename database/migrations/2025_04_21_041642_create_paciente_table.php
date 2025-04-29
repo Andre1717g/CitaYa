@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('paciente', function (Blueprint $table) {
+        /*Schema::create('paciente', function (Blueprint $table) {
             $table->id();
             $table->string('nombres');
             $table->string('apellidos');
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('telefono')->nullable();
             $table->text('direccion')->nullable();
             $table->timestamps();
-        });
+        });*/
     }
 
     public function down()
