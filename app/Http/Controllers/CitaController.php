@@ -9,8 +9,10 @@ class CitaController extends Controller
 {
     public function index(Request $request)
     {
+        $doctorId = auth('doctor')->user()->id;
+    
         $citas = Cita::with(['doctor', 'paciente'])
-            ->when($request->doctor_id, fn($q) => $q->where('doctor_id', $request->doctor_id))
+            ->where('doctor_id', $doctorId)
             ->when($request->paciente_id, fn($q) => $q->where('paciente_id', $request->paciente_id))
             ->get();
     
