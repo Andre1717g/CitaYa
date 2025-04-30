@@ -6,17 +6,21 @@
                 <h1 class="display-5 fw-bold mb-3">Tu salud en buenas manos</h1>
                 <p class="lead mb-4">Encuentra especialistas certificados y agenda citas en minutos.</p>
                 <div class="d-flex gap-2">
-                    <a href="{{ route('medicos') }}" class="btn btn-primary btn-lg px-4 rounded-pill">Buscar médico</a>
+                    <!-- Verifica si el usuario está autenticado -->
+                    <a href="{{ auth()->check() ? route('paciente.ver-medicos') : route('medicos') }}" 
+                       class="btn btn-primary btn-lg px-4 rounded-pill">
+                       Buscar médico
+                    </a>
                     <a href="#how-it-works" class="btn btn-outline-primary btn-lg px-4 rounded-pill">Cómo funciona</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center">
-                <!-- Imagen ilustrativa de undraw.co -->
                 <img src="{{ asset('images/medicina.svg') }}" alt="Ilustración médica" class="img-fluid" style="max-height: 350px;">
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Presentación del sistema -->
 <section id="about" class="py-5 bg-white">
@@ -25,7 +29,7 @@
             <div class="col-lg-10">
                 <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
                     <div class="card-body p-5 text-center">
-                        <h2 class="h3 text-primary mb-4">Bienvenido a CitaYa</h2>
+                        <h2 class="h3 text-primary mb-4">Bienvenido a CitasYa</h2>
                         <p class="lead mb-4">
                             CitaYa es una plataforma diseñada para facilitar la conexión entre pacientes y médicos en El Salvador. Nuestro objetivo es brindarte una forma rápida, segura y organizada de agendar tus citas médicas desde cualquier lugar.
                         </p>
@@ -46,7 +50,7 @@
 <section id="how-it-works" class="py-5 bg-white">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="display-6 fw-bold text-primary">¿Cómo funciona CitaYa?</h2>
+            <h2 class="display-6 fw-bold text-primary">¿Cómo funciona CitasYa?</h2>
             <p class="lead text-muted">Solo necesitas seguir estos pasos para agendar tu cita médica:</p>
         </div>
         <div class="row g-4 text-center">
@@ -95,7 +99,12 @@
                         </div>
                         <h3 class="h5">{{ $item['title'] }}</h3>
                         <p class="text-muted small">{{ $item['desc'] }}</p>
-                        <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">Ver médicos</a>
+                        <!-- <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">Ver médicos</a> -->
+                        <a href="{{ auth()->check() ? route('paciente.ver-medicos') : route('medicos') }}" 
+                            class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                            Ver médicos
+                        </a>
+
                     </div>
                 </div>
             </div>
