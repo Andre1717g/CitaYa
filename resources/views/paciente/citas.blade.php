@@ -20,6 +20,7 @@
                         <th>Fecha</th>
                         <th>Hora</th>
                         <th>Doctor</th>
+                        <th>Motivo</th> <!-- Columna nueva para mostrar el motivo -->
                         <th>Estado</th>
                     </tr>
                 </thead>
@@ -29,6 +30,7 @@
                             <td>{{ \Carbon\Carbon::parse($cita->fecha)->format('d/m/Y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($cita->hora)->format('h:i A') }}</td>
                             <td>{{ $cita->doctor->nombres }} {{ $cita->doctor->apellidos }}</td>
+                            <td>{{ $cita->motivo }}</td> <!-- Mostrar el motivo aquí -->
                             <td>
                                 <span class="badge
                                     @if($cita->estado == 'Pendiente')

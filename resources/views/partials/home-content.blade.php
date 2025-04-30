@@ -6,7 +6,7 @@
                 <h1 class="display-5 fw-bold mb-3">Tu salud en buenas manos</h1>
                 <p class="lead mb-4">Encuentra especialistas certificados y agenda citas en minutos.</p>
                 <div class="d-flex gap-2">
-                    <!-- Verifica si el usuario está autenticado -->
+                    
                     <a href="{{ auth()->check() ? route('paciente.ver-medicos') : route('medicos') }}" 
                        class="btn btn-primary btn-lg px-4 rounded-pill">
                        Buscar médico
