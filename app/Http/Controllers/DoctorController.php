@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\HorarioDoctor; 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
+    // Método para el perfil del doctor
     public function perfil()
     {
         if (auth()->guard('doctor')->check()) {
@@ -18,6 +19,7 @@ class DoctorController extends Controller
         }
     }
 
+    // Método para registrar un nuevo doctor
     public function create()
     {
         return view('auth.doctor-registry', [
@@ -25,6 +27,7 @@ class DoctorController extends Controller
         ]);
     }
 
+    // Método para almacenar los datos del doctor
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -63,6 +66,7 @@ class DoctorController extends Controller
         ]);
     }
 
+    // Método para mostrar todos los doctores (búsqueda)
     public function index(Request $request)
     {
         $query = Doctor::query();
@@ -90,7 +94,20 @@ class DoctorController extends Controller
         return view('medicos', compact('doctores', 'especialidades'));
     }
 
-    // ✅ MÉTODO AGREGADO PARA MOSTRAR LA VISTA DE HORARIO
+    // Método para ver los detalles del doctor
+    public function detalle($id)
+    {
+        // Obtener el doctor por el ID
+        $doctor = Doctor::findOrFail($id);
+
+        // Obtener los horarios de atención del doctor
+        $horarios = HorarioDoctor::where('doctor_id', $id)->get();
+
+        // Retornar la vista con los datos del doctor y sus horarios
+        return view('detalle', compact('doctor', 'horarios'));
+    }
+
+    // Método para la página de horarios (para el doctor)
     public function horario()
     {
         if (auth()->guard('doctor')->check()) {
@@ -98,5 +115,33 @@ class DoctorController extends Controller
         } else {
             return redirect()->route('login');
         }
+    }
+
+    // Método para mostrar médicos para pacientes (con filtros)
+    public function mostrarParaPaciente(Request $request)
+    {
+        $query = Doctor::query();
+
+        if ($request->filled('q')) {
+            $search = $request->q;
+            $query->where(function($q) use ($search) {
+                $q->where('nombres', 'like', "%$search%")
+                  ->orWhere('apellidos', 'like', "%$search%");
+            });
+        }
+
+        if ($request->filled('especialidad') && $request->especialidad !== '') {
+            $query->where('area_salud', $request->especialidad);
+        }
+
+        if ($request->filled('direccion')) {
+            $direccion = $request->direccion;
+            $query->where('direccion_consultorio', 'like', "%$direccion%");
+        }
+
+        $doctores = $query->get();
+        $especialidades = Doctor::select('area_salud')->distinct()->orderBy('area_salud')->pluck('area_salud');
+
+        return view('paciente.medico', compact('doctores', 'especialidades'));
     }
 }

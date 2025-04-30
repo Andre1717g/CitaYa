@@ -99,7 +99,7 @@ class CitaController extends Controller
     
         $cita->fecha = $request->fecha;
         $cita->hora = $request->hora;
-        $cita->estado = 'Pendiente'; // importante: vuelve a pendiente
+        $cita->estado = 'Pendiente'; 
         $cita->save();
     
         return redirect()->route('doctor.citas')->with('success', 'Cita reprogramada correctamente.');

@@ -21,7 +21,7 @@ Route::get('/tipo-registro', function () {
     return view('auth.register-type'); // Correcto: está en auth/
 })->name('register.type');
 
-// Rutas para formularios (consistentes con tu estructura de carpetas)
+
 /******************************************************** */
 // Ruta para el login de inicio de sesión
 Route::get('/login', function () {
@@ -58,11 +58,21 @@ Route::middleware(['auth:paciente'])->group(function () {
 
     Route::put('/paciente/perfil', [PacienteController::class, 'update'])->name('paciente.perfil.update');
 
+    Route::get('/paciente/medico', [DoctorController::class, 'mostrarParaPaciente'])->name('paciente.ver-medicos');
+ 
+    Route::get('/paciente/medico/{id}', [PacienteController::class, 'verDetalle'])->name('paciente.medico.detalle');
+
+    // en routes/web.php
+    Route::get('/paciente/citas', [PacienteController::class, 'citas'])->name('paciente.citas');
+
+
+
+
 });
-// En tu archivo routes/web.php
+
 // Route::prefix('paciente')->name('paciente.')->middleware(['auth'])->group(function () {
 //     Route::get('/dashboard', function () {
-//         return view('paciente.dashboard');  // Asegúrate de que esta vista existe
+//         return view('paciente.dashboard');  
 //     })->name('dashboard');
 // });
 
@@ -92,11 +102,11 @@ Route::get('/doctor/historial', function () {
 
 // Mostrar formulario de horario
 Route::get('/doctor/horario', function () {
-    return view('doctor.horario'); // Asegúrate de que sea "horario.blade.php"
+    return view('doctor.horario');
 })->name('doctor.horario');
 
 // Guardar horario
-Route::get('/doctor/horario', [HorarioDoctorController::class, 'index'])->name('doctor.horario'); // Ver horarios
+Route::get('/doctor/horario', [HorarioDoctorController::class, 'index'])->name('doctor.horario'); 
 Route::post('/doctor/horario', [HorarioDoctorController::class, 'store'])->name('doctor.horario.store');
 
 
@@ -107,9 +117,13 @@ Route::put('/doctor/horarios/{id}', [HorarioDoctorController::class, 'update'])-
 // Eliminar horario 
 Route::delete('/doctor/horarios/{id}', [HorarioDoctorController::class, 'destroy'])->name('doctor.horarios.destroy');
 
+
+
 });
 
 Route::get('/medicos', [DoctorController::class, 'index'])->name('medicos');
+Route::get('/medico/{id}', [DoctorController::class, 'detalle'])->name('medico.detalle');
+
 /******************************************************** */
 /*
 Route::get('/medicos', function () {
@@ -139,3 +153,5 @@ Route::get('/citas/{id}/confirmar', [CitaController::class, 'confirmar'])->name(
 Route::get('/citas/{id}/cancelar', [CitaController::class, 'cancelar'])->name('citas.cancelar');
 Route::get('/citas/{id}/finalizar', [CitaController::class, 'finalizar'])->name('citas.finalizar');
 Route::put('/citas/{id}/reprogramar', [CitaController::class, 'reprogramar'])->name('citas.reprogramar');
+
+

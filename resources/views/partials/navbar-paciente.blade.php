@@ -15,11 +15,17 @@
                 <li class="nav-item mx-2"><a class="nav-link text-white" href="http://127.0.0.1:8000/paciente/inicio">Inicio</a></li>
 
 
+        
                 <!-- Médicos -->
-                <li class="nav-item mx-2"><a class="nav-link text-white" href="#">Médicos</a></li>
+                <li class="nav-item mx-2"><a class="nav-link text-white" href="{{ route('paciente.ver-medicos') }}">Médicos</a></li>
+
 
                 <!-- Citas -->
-                <li class="nav-item mx-2"><a class="nav-link text-white" href="#">Citas</a></li>
+     
+                <li class="nav-item mx-2">
+                    <a class="nav-link text-white" href="{{ route('paciente.citas') }}">Citas</a>
+                </li>
+
 
                 <!-- Perfil -->
                 <li class="nav-item mx-2">
@@ -44,7 +50,7 @@
 <style>
 /* Mantener todos los items perfectamente alineados en la misma línea */
 .navbar-nav .nav-link {
-    line-height: 1.4rem;          /* altura igual para todos */
+    line-height: 1.4rem;          
     display: flex;
     align-items: center;
 }

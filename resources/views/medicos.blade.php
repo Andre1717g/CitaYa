@@ -90,8 +90,9 @@
                             </div>
                         </div>
                         <div class="card-footer bg-white border-0">
-                            <a href="#" class="btn btn-outline-primary w-100">Ver Detalle</a>
+                            <a href="{{ route('medico.detalle', ['id' => $doctor->id]) }}" class="btn btn-outline-primary w-100">Ver Detalle</a>
                         </div>
+
                     </div>
                 </div>
             @empty
@@ -126,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const priceRange = document.querySelector('input[type="range"]');
     if(priceRange) {
         priceRange.addEventListener('input', function() {
-            // Aquí puedes agregar lógica para mostrar el valor seleccionado
+           
         });
     }
 });
@@ -138,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const departamentos = {
         'San Salvador': ['San Salvador', 'Soyapango', 'Apopa', 'Mejicanos', 'Santa Tecla'],
         'Santa Ana': ['Santa Ana', 'Chalchuapa', 'Metapán'],
-        // Agrega todos los departamentos...
+        
     };
 
     // Selección SEGURA por atributo name

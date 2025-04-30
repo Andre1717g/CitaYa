@@ -32,7 +32,7 @@
                                 <th>Hora</th>
                                 <th>Motivo</th>
                                 <th>Estado</th>
-                                <th>Creado hace</th> <!-- 🔥 Nueva columna -->
+                                <th>Creado hace</th> 
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -52,7 +52,7 @@
                                                 @default <span class="badge bg-secondary">{{ $cita->estado }}</span>
                                             @endswitch
                                         </td>
-                                        <td>{{ $cita->created_at->diffForHumans() }}</td> <!-- 🔥 Aquí va -->
+                                        <td>{{ $cita->created_at->diffForHumans() }}</td> 
                                         <td>
     <!-- Botón Ver -->
     <button class="btn btn-sm btn-primary btn-ver-cita" data-bs-toggle="modal" data-bs-target="#modalVerCita" data-cita='@json($cita)'>

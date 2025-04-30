@@ -9,8 +9,10 @@ class HorarioDoctor extends Model
 {
     use HasFactory;
 
+    // Definir la tabla
     protected $table = 'horario_doctor';
 
+    // Definir los campos que se pueden asignar de manera masiva
     protected $fillable = [
         'doctor_id',
         'dia_semana',
@@ -18,8 +20,9 @@ class HorarioDoctor extends Model
         'hora_fin',
     ];
 
+    // Relación con el modelo Doctor
     public function doctor()
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsTo(Doctor::class, 'doctor_id'); 
     }
 }

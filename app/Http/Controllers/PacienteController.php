@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Paciente;
+use App\Models\Doctor;
+use App\Models\HorarioDoctor; 
+use App\Models\Cita; 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class PacienteController extends Controller
 {
-    // Mostrar formulario de registro
+    // Registro de paciente
     public function create()
     {
         return view('auth.patient-registration', [
@@ -17,10 +20,9 @@ class PacienteController extends Controller
         ]);
     }
 
-    // Guardar un nuevo paciente en la base de datos
+    // Almacenar paciente
     public function store(Request $request)
     {
-        // ✅ Validamos los campos
         $validated = $request->validate([
             'nombres' => 'required|string|max:100',
             'apellidos' => 'required|string|max:100',
@@ -34,48 +36,41 @@ class PacienteController extends Controller
             'terms' => 'required|accepted'
         ]);
 
-        // ✅ Procesamos la imagen de rostro si la subió
         if ($request->hasFile('foto_rostro')) {
             $image = $request->file('foto_rostro');
             $validated['foto_rostro'] = base64_encode(file_get_contents($image->getRealPath()));
         }
 
-        // ✅ Ajustamos el array para la base de datos
         $validated['contraseña'] = $validated['password'];
-        unset($validated['password']);
-        unset($validated['password_confirmation']);
+        unset($validated['password'], $validated['password_confirmation']);
 
-        // ✅ Creamos al paciente
         $paciente = Paciente::create($validated);
 
-        // ✅ Autenticamos al paciente
         Auth::guard('paciente')->login($paciente);
         $request->session()->regenerate();
 
-        // ✅ Redireccionamos a la página principal
         return redirect()->route('home')->with('success', '¡Registro exitoso!');
     }
 
-    // Mostrar perfil del paciente logueado
+    // Ver perfil del paciente
     public function perfil()
     {
-        $paciente = Auth::guard('paciente')->user(); // obtener paciente autenticado
+        $paciente = Auth::guard('paciente')->user();
         return view('paciente.perfil', compact('paciente'));
     }
 
-    // Mostrar formulario para editar perfil
+    // Editar perfil del paciente
     public function edit()
     {
-        $paciente = Auth::guard('paciente')->user(); // obtener paciente autenticado
+        $paciente = Auth::guard('paciente')->user();
         return view('paciente.perfil-editar', compact('paciente'));
     }
 
-    // Actualizar los datos del paciente
+    // Actualizar perfil del paciente
     public function update(Request $request)
     {
-        $paciente = Auth::guard('paciente')->user(); // obtener paciente autenticado
+        $paciente = Auth::guard('paciente')->user();
 
-        // Validación
         $validated = $request->validate([
             'nombres' => 'required|string|max:100',
             'apellidos' => 'required|string|max:100',
@@ -86,15 +81,33 @@ class PacienteController extends Controller
             'foto_rostro' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        // Si hay una nueva foto de rostro, la procesamos
         if ($request->hasFile('foto_rostro')) {
             $validated['foto_rostro'] = base64_encode(file_get_contents($request->file('foto_rostro')->getRealPath()));
         }
 
-        // Actualizamos los datos
         $paciente->update($validated);
 
-        // Redirigimos con mensaje de éxito
         return redirect()->route('paciente.perfil.editar')->with('success', '¡Perfil actualizado correctamente!');
+    }
+
+    // Mostrar detalle del médico
+    public function verDetalle($id)
+    {
+        $doctor = Doctor::findOrFail($id);
+        $horarios = HorarioDoctor::where('doctor_id', $id)->get(); 
+
+        return view('paciente.medico-detalle', compact('doctor', 'horarios'));
+    }
+
+    // Mostrar citas del paciente
+    public function citas()
+    {
+        // Obtener el paciente autenticado
+        $paciente = Auth::guard('paciente')->user();
+
+        // Obtener las citas del paciente
+        $citas = $paciente->citas; // Relación de citas asociadas al paciente
+
+        return view('paciente.citas', compact('citas'));
     }
 }
