@@ -8,6 +8,7 @@ use App\Models\Paciente;
 
 class CitaController extends Controller
 {
+    // Método que ya tienes para mostrar todas las citas
     public function index(Request $request)
     {
         $doctorId = auth('doctor')->user()->id;
@@ -26,7 +27,21 @@ class CitaController extends Controller
         return view('doctor.citas', compact('citas', 'pacientes'));
     }
 
+    // Método para mostrar las citas finalizadas
+    public function historial()
+    {
+        $doctorId = auth('doctor')->user()->id;
+    
+        // Obtener las citas finalizadas del doctor actual
+        $citasFinalizadas = Cita::with(['doctor', 'paciente'])
+            ->where('doctor_id', $doctorId)
+            ->where('estado', 'Finalizada')  // Solo citas finalizadas
+            ->get();
+    
+        return view('doctor.historial', compact('citasFinalizadas'));
+    }
 
+    // Método que ya tienes para crear una cita
     public function store(Request $request)
     {
         $request->validate([
@@ -104,5 +119,4 @@ class CitaController extends Controller
     
         return redirect()->route('doctor.citas')->with('success', 'Cita reprogramada correctamente.');
     }
-    
 }

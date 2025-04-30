@@ -95,9 +95,12 @@ Route::get('/doctor/perfil/editar', [DoctorPerfilController::class, 'edit'])->na
 // Procesar la actualización
 Route::put('/doctor/perfil/actualizar', [DoctorPerfilController::class, 'update'])->name('doctor.perfil.actualizar');
 
-Route::get('/doctor/historial', function () {
-    return view('doctor.historial');
-})->name('doctor.historial');
+// Route::get('/doctor/historial', function () {
+//     return view('doctor.historial');
+// })->name('doctor.historial');
+ 
+// Ruta para ver el historial de citas finalizadas
+Route::get('/doctor/historial', [CitaController::class, 'historial'])->name('doctor.historial');
 
 
 // Mostrar formulario de horario
@@ -153,5 +156,4 @@ Route::get('/citas/{id}/confirmar', [CitaController::class, 'confirmar'])->name(
 Route::get('/citas/{id}/cancelar', [CitaController::class, 'cancelar'])->name('citas.cancelar');
 Route::get('/citas/{id}/finalizar', [CitaController::class, 'finalizar'])->name('citas.finalizar');
 Route::put('/citas/{id}/reprogramar', [CitaController::class, 'reprogramar'])->name('citas.reprogramar');
-
 
