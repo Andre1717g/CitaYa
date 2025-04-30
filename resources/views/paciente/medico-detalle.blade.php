@@ -95,7 +95,7 @@
       <div class="modal-body">
         <form action="{{ route('citas.store') }}" method="POST">
           @csrf
-          
+          <input type="hidden" name="doctor_id" value="{{ $doctor->id }}">
           <!-- Campo de selección de fecha -->
           <div class="mb-3">
             <label for="fecha" class="form-label">Fecha de Cita</label>

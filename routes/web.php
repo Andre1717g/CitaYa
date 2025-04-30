@@ -62,8 +62,7 @@ Route::middleware(['auth:paciente'])->group(function () {
  
     Route::get('/paciente/medico/{id}', [PacienteController::class, 'verDetalle'])->name('paciente.medico.detalle');
 
-    // en routes/web.php
-    Route::get('/paciente/citas', [PacienteController::class, 'citas'])->name('paciente.citas');
+    Route::get('/paciente/citas', [CitaController::class, 'indexPaciente'])->name('paciente.citas');
 
 
 
