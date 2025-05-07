@@ -67,7 +67,9 @@
         <div class="row">
             @forelse($doctores as $doctor)
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
+                <div class="card h-100 border border-secondary shadow-sm hover-shadow transition-all">
+
+
                     @if($doctor->foto_rostro)
                         <img src="{{ $doctor->foto_rostro }}"
                             class="rounded-circle mx-auto d-block bg-white p-2 mt-3"

@@ -34,12 +34,12 @@
                         <ul class="list-unstyled mb-0">
                             <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Acceso 100% gratuito</li>
                             <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Agenda citas en minutos</li>
-                            <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Historial médico digital</li>
+                            <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i>  Accede al historial completo de tus citas</li>
                         </ul>
                     </div>
                     <div class="card-footer bg-transparent border-0 py-3">
-                        <a href="{{ route('patient.register') }}" class="btn btn-primary btn-lg w-100 rounded-pill">
-                            Registrarme <i class="fas fa-arrow-right ms-2"></i>
+                        <a href="{{ route('patient.register') }}" class="btn btn-primary ">
+                            Registrarme <i class=""></i>
                         </a>
                     </div>
                 </div>
@@ -60,14 +60,23 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled mb-0">
-                            <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Gestión de consultorio</li>
-                            <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Citas automatizadas</li>
-                            <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Dashboard profesional</li>
+                            <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Citas automatizadas </li>
+                            <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Acceso completo a gestión de consultorio</li>
+                            <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> Dashboard profesional con análisis de desempeño</li>
                         </ul>
+                        <!-- <div class="mt-3">
+                           
+                        <p><strong>Suscripción mensual: $30</strong> o <strong>anual: $340</strong> (ahorra $20 al pagar anualmente)</p>
+                        <p>Accede a todos los beneficios de la suscripción durante el período elegido.</p>
+
+                           
+                        </div> -->
                     </div>
+
+
                     <div class="card-footer bg-transparent border-0 py-3">
-                        <a href="{{ route('doctor.register') }}" class="btn btn-success btn-lg w-100 rounded-pill">
-                            Comenzar <i class="fas fa-arrow-right ms-2"></i>
+                        <a href="{{ route('doctor.register') }}" class="btn btn-primary">
+                        Suscribirse Ahora </i>
                         </a>
                     </div>
                 </div>
