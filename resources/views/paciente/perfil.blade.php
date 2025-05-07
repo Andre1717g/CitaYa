@@ -9,7 +9,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <!-- No sidebar aquí, solo navbar-paciente -->
+       
 
         <!-- Contenido principal -->
         <main class="col-12 px-md-4 py-4">
@@ -36,16 +36,15 @@
                             <p><strong>Dirección:</strong> {{ $paciente->direccion ?? 'No proporcionada' }}</p>
                         </div>
                         <div class="col-md-4 text-center">
-                        @if($paciente->foto_rostro)
-                            <img src="{{ $paciente->foto_rostro }}" alt="Foto de perfil" 
-                                class="rounded-circle mx-auto d-block bg-white p-2 shadow-sm"
-                                style="width: 180px; height: 180px; object-fit: cover;">
-                        @else
-                            <img src="{{ asset('images/default-profile.png') }}" alt="Sin foto" 
-                                class="rounded-circle mx-auto d-block bg-light p-2 shadow-sm"
-                                style="width: 180px; height: 180px; object-fit: cover;">
-                        @endif
-
+                            @if($paciente->foto_rostro)
+                                <img src="data:image/jpeg;base64,{{ $paciente->foto_rostro }}" alt="Foto de perfil" 
+                                     class="rounded-circle mx-auto d-block bg-white p-2 shadow-sm"
+                                     style="width: 180px; height: 180px; object-fit: cover;">
+                            @else
+                                <img src="{{ asset('images/avatarpaciente.png') }}" alt="Avatar predeterminado" 
+                                     class="rounded-circle mx-auto d-block bg-light p-2 shadow-sm"
+                                     style="width: 180px; height: 180px; object-fit: cover;">
+                            @endif
                         </div>
                     </div>
                 </div>
