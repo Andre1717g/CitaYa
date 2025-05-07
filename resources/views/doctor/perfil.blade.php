@@ -34,7 +34,11 @@
                             <p><strong>Email:</strong> {{ $doctor->correo_electronico }}</p>
                         </div>
                         <div class="col-md-4 text-center">
-                            <img src="{{ asset('data:image/jpeg;base64,' . $doctor->foto_rostro) }}" alt="Foto de perfil" class="img-thumbnail rounded-circle" style="width: 180px; height: 180px; object-fit: cover;">
+                            @if($doctor->foto_rostro)
+                                <img src="{{ $doctor->foto_rostro }}" alt="Foto de perfil" class="img-thumbnail rounded-circle" style="width: 180px; height: 180px; object-fit: cover;">
+                            @else
+                                <img src="{{ asset('images/default-profile.png') }}" alt="Foto por defecto" class="img-thumbnail rounded-circle" style="width: 180px; height: 180px; object-fit: cover;">
+                            @endif
                         </div>
                     </div>
                 </div>

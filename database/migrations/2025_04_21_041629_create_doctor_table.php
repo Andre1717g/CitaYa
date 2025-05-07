@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->text('enlace_google_maps');
             $table->string('correo_electronico', 150)->unique();
             $table->text('contraseña');
-            $table->binary('foto_rostro')->nullable();
+            $table->longText('foto_rostro')->nullable(); // ← Corregido aquí
             $table->timestamps();
         }); 
     }

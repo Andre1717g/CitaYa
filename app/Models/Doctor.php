@@ -30,27 +30,41 @@ class Doctor extends Authenticatable
         'contraseña',
     ];
 
+    /**
+     * Hashea la contraseña automáticamente
+     */
     public function setContraseñaAttribute($value)
     {
         $this->attributes['contraseña'] = Hash::make($value);
     }
 
+    /**
+     * Procesa la imagen antes de guardarla
+     */
     public function setFotoRostroAttribute($value)
     {
-        if ($value && $value instanceof \Illuminate\Http\UploadedFile) {
+        if ($value && is_string($value) && str_starts_with($value, 'data:image')) {
+            // Si es base64 directamente desde el frontend (formulario)
+            $this->attributes['foto_rostro'] = preg_replace('#^data:image/\w+;base64,#i', '', $value);
+        } elseif ($value && $value instanceof \Illuminate\Http\UploadedFile) {
+            // Si es un archivo subido
             $this->attributes['foto_rostro'] = base64_encode(file_get_contents($value->getRealPath()));
         } else {
+            // Si no se proporciona una foto, dejamos el valor nulo
             $this->attributes['foto_rostro'] = $value;
         }
     }
 
+    /**
+     * Obtiene la foto en formato base64 para visualización
+     */
     public function getFotoRostroAttribute($value)
     {
         if (!$value) {
             return null;
         }
- 
-        // Asumir que es JPEG  .jpeg o .jpg en validaciones
+
+        // Verifica si el valor está en base64 y añade el prefijo adecuado
         return 'data:image/jpeg;base64,' . $value;
     }
 

@@ -8,11 +8,11 @@
 
 @section('content')
 <!-- Buscador simplificado para El Salvador -->
-<section id="search" class="py-5 bg-light">
+<section id="search" class="py-5 bg-white">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="card border-0 rounded-4 overflow-hidden bg-white">
                     <div class="card-body p-4">
                         <h2 class="h3 text-center mb-4 text-primary fw-bold">
                             <i class="fas fa-search-plus me-2"></i> Encuentra al médico ideal
@@ -62,16 +62,20 @@
 </section>
 
 <!-- Resultados de búsqueda -->
-<section class="py-5">
+<section class="py-5 bg-white">
     <div class="container">
         <div class="row">
             @forelse($doctores as $doctor)
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 border-0 shadow-sm hover-shadow transition-all">
                     @if($doctor->foto_rostro)
-                        <img src="data:image/jpeg;base64,{{ $doctor->foto_rostro }}" class="card-img-top" alt="Foto del Doctor" style="height: 200px; object-fit: cover;">
+                        <img src="{{ $doctor->foto_rostro }}"
+                            class="rounded-circle mx-auto d-block bg-white p-2 mt-3"
+                            alt="Foto del Doctor"
+                            style="height: 180px; width: 180px; object-fit: cover;">
                     @else
-                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <div class="d-flex align-items-center justify-content-center bg-light rounded-circle mx-auto mt-3"
+                            style="height: 180px; width: 180px;">
                             <i class="fas fa-user-md fa-3x text-muted"></i>
                         </div>
                     @endif
@@ -90,7 +94,7 @@
                             </div>
                         </div>
                         <div class="card-footer bg-white border-0">
-                        <a href="{{ route('paciente.medico.detalle', ['id' => $doctor->id]) }}" class="btn btn-outline-primary w-100">Ver Detalle</a>
+                            <a href="{{ route('paciente.medico.detalle', ['id' => $doctor->id]) }}" class="btn btn-outline-primary w-100">Ver Detalle</a>
                         </div>
                     </div>
                 </div>

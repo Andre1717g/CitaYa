@@ -15,8 +15,8 @@
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-body text-center">
-                    @if($doctor->foto_rostro)
-                        <img src="data:image/jpeg;base64,{{ $doctor->foto_rostro }}" class="img-fluid rounded-circle" alt="Foto del doctor" style="max-width: 200px;">
+                @if($doctor->foto_rostro)
+                        <img src="{{ $doctor->foto_rostro }}" class="img-fluid rounded-circle" alt="Foto del doctor" style="max-width: 200px;">
                     @else
                         <div class="bg-light text-center p-5 rounded-circle">
                             <i class="fas fa-user-md fa-5x text-muted"></i>
